@@ -1,10 +1,5 @@
 import { Router } from "express";
-import {
-  selectUsuario,
-  insertUsuario,
-  deleteUsuario,
-  updateUsuario,
-} from "../db/bd.js"; // Caminho corrigido
+import { selectUsuario, insertUsuario, deleteUsuario, updateUsuario } from "/src/db/index.js";
 
 const router = Router();
 
