@@ -1,5 +1,4 @@
 import { Router } from "express";
-
 import {
   selectUsuario,
   selectUsuarios,
@@ -59,7 +58,7 @@ router.delete("/usuario/:id", async (req, res) => {
   console.log("Rota DELETE /usuario solicitada");
   try {
     await deleteUsuario(req.params.id);
-    res.status(200).json({ message: "Usuário excluido com sucesso!" });
+    res.status(200).json({ message: "Usuário excluído com sucesso!" });
   } catch (error) {
     res.status(error.status || 500).json({ message: error.message || "Erro!" });
   }
