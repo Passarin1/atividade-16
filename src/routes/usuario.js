@@ -2,25 +2,22 @@
 import { Router } from "express";
 import { selectUsuario, insertUsuario, deleteUsuario, updateUsuario } from "src/db/index.js";
 
+//src/routes/usuario.js
 const router = Router();
 
-
-// Rota GET para buscar um usuário pelo ID
-app.get("/usuario/:id", async (req, res) => {
-  console.log("Rota GET /usuario/# solicitada");
+router.get("/usuario", async (req, res) => {
+  console.log(`Rota GET /usuarios solicitada pelo usuario ${req.userId}`);
   try {
-    const usuario = await selectUsuario(req.params.id);
-    if (usuario.length > 0) res.json(usuario);
-    else res.status(404).json({ message: "Usuário não encontrado!" });
+    const usuarios = await selectUsuarios();
+    res.json(usuarios);
   } catch (error) {
-    res
-      .status(error.status || 500)
-      .json({ message: error.message || "Erro!" });
+    res.status(error.status || 500).json({ message: error.message || "Erro!" });
   }
 });
+export default router;
 
 // Rota POST para criar um novo usuário
-app.post("/usuario", async (req, res) => {
+router.post("/usuario", async (req, res) => {
   console.log("Rota POST /usuario solicitada");
   try {
     await insertUsuario(req.body);
@@ -33,7 +30,7 @@ app.post("/usuario", async (req, res) => {
 });
 
 // Rota DELETE para excluir um usuário pelo ID
-app.delete("/usuario/:id", async (req, res) => {
+router.delete("/usuario/:id", async (req, res) => {
   console.log("Rota DELETE /usuario/# solicitada");
   try {
     const usuario = await selectUsuario(req.params.id);
@@ -49,7 +46,7 @@ app.delete("/usuario/:id", async (req, res) => {
 });
 
 // Rota PUT para atualizar os dados de um usuário pelo ID
-app.put("/usuario/:id", async (req, res) => {
+router.put("/usuario/:id", async (req, res) => {
   console.log("Rota PUT /usuario/# solicitada");
   try {
     const id = req.params.id;

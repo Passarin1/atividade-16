@@ -1,6 +1,6 @@
 import express from "express";                // Requisição do pacote do express
 import dotenv from "dotenv";
-import roteadorUsuario from "./src/routes/usuario.js";
+import roteadorUsuario from "src/routes/usuario.js";
 dotenv.config();
                       // Importação das funções do BD
 
