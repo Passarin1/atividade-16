@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import roteadorUsuario from "./routes/usuario.js";
+import roteadorUsuario from "src/routes/usuario.js";
 
 dotenv.config();
 

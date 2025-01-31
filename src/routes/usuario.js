@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { selectUsuario, insertUsuario, deleteUsuario, updateUsuario } from "/src/db/index.js";
+import { selectUsuario, insertUsuario, deleteUsuario, updateUsuario } from "src/db/index.js";
 
 const router = Router();
 
