@@ -1,37 +1,21 @@
+import express from "express";
+import dotenv from "dotenv";
 import roteadorUsuario from "./routes/usuario.js";
 
-import dotenv from "dotenv";
-import express from "express";
 dotenv.config();
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use("/usuario", roteadorUsuario); // Corrigido para utilizar o roteador corretamente
 
 app.get("/", (req, res) => {
   res.json({
-    message: "API para CRUD usuario: link_gitgub",
+    message: "API para CRUD usuário: link_github",
   });
 });
 
 app.listen(port, () => {
-  // Um socket para "escutar" as requisições
-  console.log(`Serviço escutando na porta:  ${port}`);
+  console.log(`Serviço escutando na porta: ${port}`);
 });
-
-//src/routes/usuario.js
-const router = Router();
-
-router.get("/usuario", async (req, res) => {
-  console.log(`Rota GET /usuarios solicitada pelo usuario ${req.userId}`);
-  try {
-    const usuarios = await selectUsuarios();
-    res.json(usuarios);
-  } catch (error) {
-    res.status(error.status || 500).json({ message: error.message || "Erro!" });
-  }
-});
-export default router;
-
-app.use(roteadorUsuario);
